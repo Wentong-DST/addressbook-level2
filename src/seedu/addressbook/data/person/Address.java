@@ -12,6 +12,10 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
+	public final Block block;
+    public final Street street;
+    public final Unit unit;
+    public final PostalCode postalCode;
     public final String value;
     private boolean isPrivate;
 
@@ -28,6 +32,14 @@ public class Address {
         }
         this.value = trimmedAddress;
     }
+	
+	String[] fullAddress = new String[4];
+	fullAddress = trimmedAddress.split(",");
+	this.block = new Block(fullAddress[0]);
+	this.street = new Street(fullAddress[1]);
+	this.unit = new Unit(fullAddress[2]);
+	this.postalCode = new PostalCode(fullAddress[3]);
+	this.value = block.getBlock() + "," + street.getStreet() + "," + unit.getUnit() + "," + postalCode.getPostalCode();
 
     /**
      * Returns true if a given string is a valid person email.
