@@ -20,13 +20,13 @@ public class Street {
 	
 	@Override
     public String toString() {
-        return value;
+        return "STREET " + street;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Street // instanceof handles nulls
-                && this.value.equals(((Street) other).value)); // state check
+                && this.street.equals(((Street) other).street)); // state check
     }
 }

@@ -12,11 +12,11 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
-	public final Block block;
-    public final Street street;
-    public final Unit unit;
-    public final PostalCode postalCode;
-    public final String value;
+	private final Block block;
+    private final Street street;
+    private final Unit unit;
+    private final PostalCode postalCode;
+    private final String value;
     private boolean isPrivate;
 
     /**
@@ -39,7 +39,6 @@ public class Address {
 	this.street = new Street(fullAddress[1]);
 	this.unit = new Unit(fullAddress[2]);
 	this.postalCode = new PostalCode(fullAddress[3]);
-	this.value = block.getBlock() + "," + street.getStreet() + "," + unit.getUnit() + "," + postalCode.getPostalCode();
 
     /**
      * Returns true if a given string is a valid person email.
@@ -50,14 +49,17 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return block + ", " + street + ", " + unit + ", " + postalCode;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.block.equals(((Address) other).block) // state check
+				&& this.street.equals(((Address) other).street) // state check
+				&& this.unit.equals(((Address) other).unit) // state check
+				&& this.postalCode.equals(((Address) other).postalCode)); // state check
     }
 
     @Override

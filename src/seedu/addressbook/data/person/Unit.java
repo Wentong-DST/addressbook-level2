@@ -19,13 +19,13 @@ public class Unit {
 	
 	@Override
     public String toString() {
-        return value;
+        return "UNIT " + unit;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Unit // instanceof handles nulls
-                && this.value.equals(((Unit) other).value)); // state check
+                && this.unit.equals(((Unit) other).unit)); // state check
     }
 }
